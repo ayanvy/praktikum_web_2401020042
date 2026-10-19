@@ -18,7 +18,7 @@
         </ul>
     @endif
     <form action="{{ route('mahasiswa.update', $mahasiswa['id']) }}"
-          method="POST">
+          method="POST" novalidate>
         @csrf
         @method('PUT')
         <p>NIM<br>

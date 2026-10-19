@@ -21,7 +21,7 @@
         </ul>
     @endif
     <h2>Tambah Mahasiswa</h2>
-    <form action="{{ route('mahasiswa.store') }}" method="POST">
+    <form action="{{ route('mahasiswa.store') }}" method="POST" novalidate>
         @csrf
         <p>NIM<br><input type="text" name="nim" value="{{ old('nim') }}"></p>
         <p>Nama<br><input type="text" name="nama" value="{{ old('nama') }}"></p>

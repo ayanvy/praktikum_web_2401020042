@@ -54,13 +54,24 @@ Route::get('/mahasiswa', function (Request $request) {
 })->name('mahasiswa.index');
 
 Route::post('/mahasiswa', function (Request $request) {
+    $pesan = [
+    'nim.required' => 'NIM wajib diisi.',
+    'nama.required' => 'Nama wajib diisi.',
+    'email.required' => 'Email wajib diisi.',
+    'email.email' => 'Format email tidak valid, contoh: nama@example.com.',
+    'usia.required' => 'Usia wajib diisi.',
+    'usia.integer' => 'Usia harus berupa angka.',
+    'usia.min' => 'Usia minimal 15 tahun.',
+    'usia.max' => 'Usia maksimal 100 tahun.',
+    'program_studi_id.required' => 'Program studi wajib dipilih.',
+];
     $data = $request->validate([
         'nim' => ['required', 'string', 'max:20'],
         'nama' => ['required', 'string', 'max:100'],
         'email' => ['required', 'email', 'max:100'],
         'usia' => ['required', 'integer', 'min:15', 'max:100'],
         'program_studi_id' => ['required', 'integer'],
-    ]);
+    ], $pesan);
     try {
         $pdo = DB::connection()->getPdo();
         $cek = $pdo->prepare(
@@ -129,13 +140,24 @@ Route::put('/mahasiswa/{id}', function (
     Request $request,
     int $id
 ) {
+    $pesan = [
+    'nim.required' => 'NIM wajib diisi.',
+    'nama.required' => 'Nama wajib diisi.',
+    'email.required' => 'Email wajib diisi.',
+    'email.email' => 'Format email tidak valid, contoh: nama@example.com.',
+    'usia.required' => 'Usia wajib diisi.',
+    'usia.integer' => 'Usia harus berupa angka.',
+    'usia.min' => 'Usia minimal 15 tahun.',
+    'usia.max' => 'Usia maksimal 100 tahun.',
+    'program_studi_id.required' => 'Program studi wajib dipilih.',
+];
     $data = $request->validate([
         'nim' => ['required', 'string', 'max:20'],
         'nama' => ['required', 'string', 'max:100'],
         'email' => ['required', 'email', 'max:100'],
         'usia' => ['required', 'integer', 'min:15', 'max:100'],
         'program_studi_id' => ['required', 'integer'],
-    ]);
+    ], $pesan);
     try {
         $pdo = DB::connection()->getPdo();
         $cek = $pdo->prepare(
